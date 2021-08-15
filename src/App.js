@@ -12,10 +12,10 @@ function App() {
   };
 
   const calculateTotalPerPerson = () => {
-    let totalTipAmount = amount * (tipPercentage / 100);
-    let totalBillAmount = parseFloat(totalTipAmount) + parseInt(amount);
-    let totalBillAmountPerPerson = totalBillAmount / peopleCount;
-    return totalBillAmountPerPerson;
+    return (
+      (parseFloat(amount * (tipPercentage / 100)) + parseFloat(amount)) /
+      peopleCount
+    );
   };
 
   const resetState = () => {
