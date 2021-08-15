@@ -19,7 +19,7 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
     fontFamily: {
-      spacemono:'Space Mono'
+      spacemono: "Space Mono",
     },
     extend: {
       colors: {
@@ -28,7 +28,7 @@ module.exports = {
         "Dark-grayish-cyan-1": "hsl(184, 14%, 56%)",
         "Light-grayish-cyan": "hsl(185, 41%, 84%)",
         "Light-grayish-cyan-1": "hsl(189, 41%, 97%)",
-        'strong-cyan': 'hsl(172, 67%, 45%)'
+        "strong-cyan": "hsl(172, 67%, 45%)",
       },
     },
   },

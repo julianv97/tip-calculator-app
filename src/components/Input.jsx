@@ -10,7 +10,7 @@ function Input({ handleChangeInput }) {
     <form onSubmit={(e) => e.preventDefault()} className="pb-10 pt-10">
       <h1 className="text-gray-500 font-semibold">Bill</h1>
       <div className="bg-Light-grayish-cyan-1 w-full flex justify-between ">
-        <label htmlFor="bill-amount" className="flex items-center pl-2">
+        <label htmlFor="bill-amount" className="flex items-center pl-2 pr-2">
           <img src="images/icon-dollar.svg" alt="" />
         </label>
         <input
@@ -24,22 +24,28 @@ function Input({ handleChangeInput }) {
           className="w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
         />
       </div>
-      <p className="capitalize text-gray-500 font-semibold pt-10">select tip %</p>
+      <p className="capitalize text-gray-500 font-semibold pt-10">
+        select tip %
+      </p>
       <div className="grid grid-cols-2 gap-4 grid-rows-3 md:grid-cols-3 py-6">
         {percentages.map((percentage, index) => {
           return (
             <button
               key={index}
               value={percentage}
-              onClick={() => handleChangeInput("SET_TIP", percentage)}
-              className="bg-Very-dark-cyan text-white font-bold text-xl py-2 rounded-lg hover:bg-strong-cyan hover:text-Very-dark-cyan"
+              onClick={() => {
+                handleChangeInput("SET_TIP", percentage);
+              }}
+              className={
+                "bg-Very-dark-cyan text-white font-bold text-xl py-2 rounded-lg hover:bg-strong-cyan hover:text-Very-dark-cyan"
+              }
             >
               {percentage}%
             </button>
           );
         })}
         <input
-          type="text"
+          type="number"
           placeholder="Custom"
           value={state.custom}
           onChange={(e) => {
@@ -54,11 +60,11 @@ function Input({ handleChangeInput }) {
           Number of People
         </label>
         <div className="bg-Light-grayish-cyan-1 w-full flex justify-between ">
-          <label className="flex items-center pl-2">
+          <label className="flex items-center pl-2 pr-2">
             <img src="images/icon-person.svg" alt="" />
           </label>
           <input
-            type="text"
+            type="number"
             id="people-count"
             placeholder="0"
             value={state.peopleCount}
