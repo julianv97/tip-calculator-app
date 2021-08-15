@@ -5,7 +5,7 @@ import { reducer } from "./reducer";
 
 export const StateContext = React.createContext();
 export const defaultState = {
-  billAmount: 0,
+  billAmount: "",
   tipPercentage: 0,
   peopleCount: "",
   custom: "",
@@ -14,16 +14,16 @@ export const defaultState = {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  console.log(state);
+
+  const falsyValue =
+    state.billAmount === 0 ||
+    state.billAmount === "" ||
+    state.peopleCount === "0" ||
+    state.peopleCount === "";
 
   const calculateTipAmount = () => {
-    if (
-      state.billAmount === 0 ||
-      state.billAmount === "" ||
-      state.peopleCount === "0" ||
-      state.peopleCount === ""
-    ) {
-      return 0;
+    if (falsyValue) {
+      return (0.0).toFixed(2);
     }
     return (
       (state.billAmount * state.tipPercentage) /
@@ -33,13 +33,8 @@ function App() {
   };
 
   const calculateTotalPerPerson = () => {
-    if (
-      state.billAmount === 0 ||
-      state.billAmount === "" ||
-      state.peopleCount === "0" ||
-      state.peopleCount === ""
-    ) {
-      return 0;
+    if (falsyValue) {
+      return (0.0).toFixed(2);
     }
     return (
       (parseFloat(state.billAmount * (state.tipPercentage / 100)) +
@@ -58,12 +53,11 @@ function App() {
 
   return (
     <StateContext.Provider value={{ state, resetState }}>
-      <div className="bg-red-500 md:bg-blue-500 w-full h-full min-h-screen flex flex-col items-center">
-        <header>
+      <div className=" bg-Light-grayish-cyan  w-full h-full min-h-screen flex flex-col items-center font-spacemono pb-10 ">
+        <header className=" flex items-center justify-center h-20 w-full">
           <img src="images/logo.svg" alt="" />
         </header>
-        <main className=" bg-white w-full md:w-9/12 h-screen md:h-auto ">
-          <h1>Bill</h1>
+        <main className="bg-white border rounded-xl h-full  w-full md:w-8/12  md:h-auto px-6">
           <Input handleChangeInput={handleChangeInput} />
 
           <Output
