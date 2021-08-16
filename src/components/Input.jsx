@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { StateContext } from "../App";
+import BillContext from "../context/BillContext";
 
 const percentages = [5, 10, 15, 25, 50];
 
-function Input({ handleChangeInput }) {
-  const { state } = useContext(StateContext);
+function Input() {
+  const billContext = useContext(BillContext);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="pb-10 pt-10">
@@ -16,10 +16,10 @@ function Input({ handleChangeInput }) {
         <input
           type="number"
           id="bill-ampunt"
-          value={state.billAmount}
+          value={billContext.state.billAmount}
           placeholder="0"
           onChange={(e) =>
-            handleChangeInput("CHANGE_BILL_AMOUNT", e.target.value)
+            billContext.handleChangeInput("CHANGE_BILL_AMOUNT", e.target.value)
           }
           className="w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
         />
@@ -34,7 +34,7 @@ function Input({ handleChangeInput }) {
               key={index}
               value={percentage}
               onClick={() => {
-                handleChangeInput("SET_TIP", percentage);
+                billContext.handleChangeInput("SET_TIP", percentage);
               }}
               className={
                 "bg-Very-dark-cyan text-white font-bold text-xl py-2 rounded-lg hover:bg-strong-cyan hover:text-Very-dark-cyan"
@@ -47,10 +47,10 @@ function Input({ handleChangeInput }) {
         <input
           type="number"
           placeholder="Custom"
-          value={state.custom}
+          value={billContext.state.custom}
           onChange={(e) => {
-            handleChangeInput("SET_TIP", e.target.value);
-            handleChangeInput("SET_CUSTOM", e.target.value);
+            billContext.handleChangeInput("SET_TIP", e.target.value);
+            billContext.handleChangeInput("SET_CUSTOM", e.target.value);
           }}
           className="w-full rounded-lg text-center bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
         />
@@ -67,12 +67,12 @@ function Input({ handleChangeInput }) {
             type="number"
             id="people-count"
             placeholder="0"
-            value={state.peopleCount}
+            value={billContext.state.peopleCount}
             onChange={(e) =>
-              handleChangeInput("SET_PEOPLE_COUNT", e.target.value)
+              billContext.handleChangeInput("SET_PEOPLE_COUNT", e.target.value)
             }
             className={
-              state.error
+              billContext.state.error
                 ? "w-full rounded-lg text-right bg-Light-grayish-cyan-1outline-none focus:ring-2 focus:ring-red-600 outline-none text-2xl"
                 : "w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
             }

@@ -17,9 +17,47 @@ const BillState = (props) => {
   const handleChangeInput = (type, payload) => {
     dispatch({ type: type, payload: payload });
   };
+  const resetState = () => {
+    dispatch({ type: "RESET_VALUES" });
+  };
+  const falsyValue =
+    state.billAmount === 0 ||
+    state.billAmount === "" ||
+    state.peopleCount === "0" ||
+    state.peopleCount === "";
+
+  const calculateTipAmount = () => {
+    if (falsyValue) {
+      return (0.0).toFixed(2);
+    }
+    return (
+      (state.billAmount * state.tipPercentage) /
+      100 /
+      state.peopleCount
+    ).toFixed(2);
+  };
+
+  const calculateTotalPerPerson = () => {
+    if (falsyValue) {
+      return (0.0).toFixed(2);
+    }
+    return (
+      (parseFloat(state.billAmount * (state.tipPercentage / 100)) +
+        parseFloat(state.billAmount)) /
+      state.peopleCount
+    ).toFixed(2);
+  };
 
   return (
-    <BillContext.Provider value={{ state, handleChangeInput }}>
+    <BillContext.Provider
+      value={{
+        state,
+        handleChangeInput,
+        resetState,
+        calculateTipAmount,
+        calculateTotalPerPerson,
+      }}
+    >
       {props.children}
     </BillContext.Provider>
   );
