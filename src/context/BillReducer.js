@@ -1,4 +1,4 @@
-export const reducer = (state, action) => {
+const reducer = (state, action) => {
   if (action.type === "CHANGE_BILL_AMOUNT") {
     return { ...state, billAmount: action.payload };
   }
@@ -28,3 +28,5 @@ export const reducer = (state, action) => {
     };
   }
 };
+
+export default reducer;
