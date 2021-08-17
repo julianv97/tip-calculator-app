@@ -24,7 +24,9 @@ const BillState = (props) => {
     state.billAmount === 0 ||
     state.billAmount === "" ||
     state.peopleCount === "0" ||
-    state.peopleCount === "";
+    state.peopleCount === "" ||
+    state.billAmount < 0 ||
+    state.peopleCount < "0";
 
   const calculateTipAmount = () => {
     if (falsyValue) {

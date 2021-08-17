@@ -1,6 +1,9 @@
 const reducer = (state, action) => {
   if (action.type === "CHANGE_BILL_AMOUNT") {
-    return { ...state, billAmount: action.payload };
+    if (action.payload <= 0) {
+      return { ...state, error: true, billAmount: action.payload };
+    }
+    return { ...state, error: false, billAmount: action.payload };
   }
 
   if (action.type === "SET_TIP") {
@@ -8,7 +11,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "SET_PEOPLE_COUNT") {
-    if (action.payload === "0") {
+    if (action.payload <= "0") {
       return { ...state, error: true, peopleCount: action.payload };
     }
     return { ...state, error: false, peopleCount: action.payload };

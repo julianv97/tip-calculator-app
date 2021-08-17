@@ -10,18 +10,25 @@ function Input() {
     <form onSubmit={(e) => e.preventDefault()} className="pb-10 pt-10">
       <h1 className="text-gray-500 font-semibold">Bill</h1>
       <div className="bg-Light-grayish-cyan-1 w-full flex justify-between ">
-        <label htmlFor="bill-amount" className="flex items-center pl-2 pr-2">
+        <label
+          htmlFor="bill-amount"
+          className="flex items-center pl-2 pr-2 absolute z-10 pt-2"
+        >
           <img src="images/icon-dollar.svg" alt="" />
         </label>
         <input
           type="number"
-          id="bill-ampunt"
+          id="bill-amount"
           value={billContext.state.billAmount}
           placeholder="0"
           onChange={(e) =>
             billContext.handleChangeInput("CHANGE_BILL_AMOUNT", e.target.value)
           }
-          className="w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
+          className={
+            billContext.state.error
+              ? "w-full rounded-lg text-right bg-Light-grayish-cyan-1outline-none focus:ring-2 focus:ring-red-600 outline-none text-2xl"
+              : "w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan relative"
+          }
         />
       </div>
       <p className="capitalize text-gray-500 font-semibold pt-10">
@@ -37,7 +44,7 @@ function Input() {
                 billContext.handleChangeInput("SET_TIP", percentage);
               }}
               className={
-                "bg-Very-dark-cyan text-white font-bold text-xl py-2 rounded-lg hover:bg-strong-cyan hover:text-Very-dark-cyan"
+                "bg-Very-dark-cyan text-white font-bold text-xl py-2 rounded-lg hover:bg-strong-cyan hover:text-Very-dark-cyan  focus:bg-strong-cyan focus:text-Very-dark-cyan"
               }
             >
               {percentage}%
@@ -56,11 +63,12 @@ function Input() {
         />
       </div>
       <div>
-        <label htmlFor="people-count" className="text-gray-500 font-semibold">
-          Number of People
-        </label>
+        <label className="text-gray-500 font-semibold ">Number of People</label>
         <div className="bg-Light-grayish-cyan-1 w-full flex justify-between ">
-          <label className="flex items-center pl-2 pr-2">
+          <label
+            htmlFor="people-count"
+            className="flex items-center pl-2 pr-2 absolute z-10 pt-2"
+          >
             <img src="images/icon-person.svg" alt="" />
           </label>
           <input
@@ -74,7 +82,7 @@ function Input() {
             className={
               billContext.state.error
                 ? "w-full rounded-lg text-right bg-Light-grayish-cyan-1outline-none focus:ring-2 focus:ring-red-600 outline-none text-2xl"
-                : "w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan"
+                : "w-full rounded-lg text-right bg-Light-grayish-cyan-1 text-2xl outline-none focus:ring-2 focus:ring-strong-cyan relative"
             }
           />
         </div>
