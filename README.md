@@ -6,12 +6,12 @@ Desarrollado con React + TailwindCSS.
 
 #### Link: https://tip-calculator-app-julianv97.vercel.app/
 
-\`\`\`
-// this is multi-line code:
+```
+git clone https://github.com/julianv97/tip-calculator-app.git
 
-function anotherExample(firstLine, lastLine) {
-  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
-    return multiLineCode;
-  }
-}
-\`\`\`
+cd tip-calculator-app
+
+npm install
+
+npm start
+```
